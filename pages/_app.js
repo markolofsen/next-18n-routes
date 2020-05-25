@@ -1,10 +1,14 @@
 import React from 'react'
 import App from 'next/app'
-import i18n, {
+import {
+	i18n,
 	appWithTranslation
 } from '../i18n'
 
-// console.warn(i18n);
+// helpers
+import {
+	Context,
+} from '../context/'
 
 class MyApp extends App {
 
@@ -18,22 +22,35 @@ class MyApp extends App {
 			query
 		} = appContext.ctx
 
+		const currentLanguage = req ? req.language : i18n.language
+		console.warn('currentLanguage', currentLanguage);
+
 		return {
 			...appProps,
 			query,
+			currentLanguage,
 		};
 	}
 	render() {
 		const {
 			Component,
 			pageProps,
-			query
+			query,
+			currentLanguage,
 		} = this.props
 
-		console.warn('pageProps', pageProps);
-		console.warn('query', query);
+		// console.warn('pageProps', pageProps);
+		// console.warn('query', query);
+
+		const contextDataServer = {
+			currentLanguage,
+			query,
+		}
+
 		return (
-			<Component {...pageProps} />
+			<Context.Provider value={contextDataServer}>
+				<Component {...pageProps} />
+			</Context.Provider>
 		)
 	}
 }

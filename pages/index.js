@@ -1,13 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { i18n, Link, withTranslation } from '../i18n'
-
+import {
+	i18n,
+	// Link,
+	withTranslation
+} from '../i18n'
+import Link from '../components/Link/'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-const Homepage = ({ t }) => (
-  <React.Fragment>
+const Homepage = ({
+	t
+}) => (
+	<React.Fragment>
     <main>
       <Header title={t('h1')} />
       <div>
@@ -17,12 +23,10 @@ const Homepage = ({ t }) => (
         >
           {t('change-locale')}
         </button>
-        <Link href='/second-page'>
-          <button
-            type='button'
-          >
-            {t('to-second-page')}
-          </button>
+        <Link href={{ pathname: 'second', query: { id: 1 }}}>
+          <div>
+						{t('to-second-page')} are here
+					</div>
         </Link>
       </div>
     </main>
@@ -31,11 +35,11 @@ const Homepage = ({ t }) => (
 )
 
 Homepage.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'footer'],
+	namespacesRequired: ['common', 'footer'],
 })
 
 Homepage.propTypes = {
-  t: PropTypes.func.isRequired,
+	t: PropTypes.func.isRequired,
 }
 
 export default withTranslation('common')(Homepage)

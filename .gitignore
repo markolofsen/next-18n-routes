@@ -12,3 +12,6 @@ dist
 
 # Logs
 runtime.log
+
+yarn.lock
+.next
