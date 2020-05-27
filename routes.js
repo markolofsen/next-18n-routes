@@ -9,12 +9,20 @@ setRoutes.APP_ROUTES = {
     }
 	},
   second: {
-    page: 'second',
-    pattern: '/second/:id',
-    params: {
-      id: 'no_id'
-    }
+    page: '/second/index',
+		pattern: `/icons/:slug/:page([0-9]+)?`,
+		params: {
+			slug: 'all',
+			// page: 1,
+		},
   },
+	icon: {
+		page: '/second/index',
+		pattern: `/icon/:slug/`,
+		params: {
+			slug: ''
+		}
+	},
 }
 
 Object.entries(setRoutes.APP_ROUTES).map(({

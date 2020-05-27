@@ -1,13 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { withTranslation, Link } from '../i18n'
+import {
+	withTranslation,
+	Link
+} from '../../i18n'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
-const SecondPage = ({ t }) => (
-  <React.Fragment>
+const SecondPage = ({
+	t
+}) => (
+	<React.Fragment>
     <main>
       <Header title={t('h1')} />
       <Link href='/'>
@@ -23,11 +28,11 @@ const SecondPage = ({ t }) => (
 )
 
 SecondPage.getInitialProps = async () => ({
-  namespacesRequired: ['second-page', 'footer'],
+	namespacesRequired: ['second-page', 'footer'],
 })
 
 SecondPage.propTypes = {
-  t: PropTypes.func.isRequired,
+	t: PropTypes.func.isRequired,
 }
 
 export default withTranslation('second-page')(SecondPage)

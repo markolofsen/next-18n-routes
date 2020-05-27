@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import MuiLink from '@material-ui/core/Link'
 
 // import {
-// 	i18n,
-// 	Link as i18Link,
+// 	// i18n,
+// 	// Link as i18Link,
+// 	Router,
 // } from '../../i18n'
 
 
@@ -16,6 +17,7 @@ import {
 } from 'next/router'
 
 import L, {
+	Router,
 	routes,
 	APP_ROUTES
 } from '../../routes'
@@ -46,7 +48,7 @@ function PrefetchLink(props) {
 	const href = link ? link : getHref
 
 	const {
-		currentLanguage
+		currentLanguage: lng
 	} = React.useContext(Context)
 
 	const getPathname = (v) => {
@@ -66,7 +68,7 @@ function PrefetchLink(props) {
 					...APP_ROUTES[name].params,
 					...href.query,
 				}
-				return `/${currentLanguage}${r.toPath(buildQuery)}`
+				return `/${lng}${r.toPath(buildQuery)}`
 				break
 			}
 		}
@@ -81,9 +83,25 @@ function PrefetchLink(props) {
 		onClick: (e) => {
 			e.preventDefault()
 			// e.stopPropagation()
-			// L.Router.pushRoute(pathname, buildQuery)
-			L.Router.push(getAs())
-			// return false;
+
+			// Router.push(`/${pathname}`, getAs(), {
+			// 	shallow: true,
+			// })
+
+			// Router.push(
+			// 	getAs(),
+			// 	getAs(), {
+			// 		shallow: true,
+			// 	},
+			// )
+
+			// Router.push({
+			// 		pathname: `/${pathname}`,
+			// 		query: buildQuery
+			// 	},
+			// 	// getAs(),
+			// );
+
 		},
 		children: props.children,
 		ref: innerRef,
